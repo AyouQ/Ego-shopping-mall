@@ -32,6 +32,9 @@
                             <el-form-item label="确认密码" label-width="70px" prop="confirmPassword">
                                 <el-input  type="password" show-password v-model="registerForm.confirmPassword"/>
                             </el-form-item>
+                            <el-form-item label="邮箱" label-width="70px" prop="email">
+                                <el-input  type="text"  v-model="registerForm.email"/>
+                            </el-form-item>
                             <div style="display:flex; justify-content: center;" class="submit" name="register">
                                     <el-button type="primary" @click="submitForm('registerForm')">注册</el-button>
                             </div>
@@ -85,7 +88,8 @@ export default {
             registerForm:{
                 username:'',
                 password:'',
-                confirmPassword:''
+                confirmPassword:'',
+                email:'',
             },
             activeTab:'login',
             rules:{

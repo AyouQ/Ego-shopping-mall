@@ -4,7 +4,6 @@ import Home from '../components/views/main/Home.vue';
 import Params from "@/components/views/main/Params.vue";
 import Products from "@/components/views/main/Products.vue";
 import ADCategory from "@/components/views/main/ADCategory.vue";
-import test from '../components/test.vue';
 import Login from '../components/views/Login.vue';
 const router = createRouter({
     history: createWebHashHistory(), 
