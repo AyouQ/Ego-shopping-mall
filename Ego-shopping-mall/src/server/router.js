@@ -1,7 +1,7 @@
 import express from  'express';
 const router=express.Router();
 import sqlclient from './config.js';
-
+import jwt from 'jsonwebtoken';
 
 // 注册
 router.post('/register',(req,res)=>{
@@ -35,19 +35,23 @@ router.post('/login',(req,res)=>{
     const{username,password}=req.body;
     const sql='select * from users where name=? and password=?';
     // const arr=[username,password];
-    const arr=['yang','123123']
+    const arr=['yang','123123123']
     sqlclient(sql,arr,(result)=>{
         if(result.length>0){
+
+            let token=jwt.sign({
+                username,
+                password
+            },'somekeys')
             res.send({
                 code:200,
                 msg:"登录成功",
-                result
+                token,
             })
         }else{
             res.send({
-                code:500,
+                code:401,
                 msg:"登录失败",
-                result
             })
         }
     })
