@@ -10,10 +10,10 @@
                     <el-tab-pane label="登录" name="login">
                          <el-form :model="loginForm" status-icon ref="loginForm" :rules="rules"> 
                             <el-form-item label="用户名" label-width="70px" prop="username">
-                                <el-input  type="text" v-model="loginForm.username"/>
+                                <el-input  type="text" v-model.trim="loginForm.username"/>
                             </el-form-item>
                             <el-form-item label="密码" label-width="70px" prop="password">
-                                <el-input  type="password" show-password v-model="loginForm.password"/>
+                                <el-input  type="password" show-password v-model.trim="loginForm.password"/>
                             </el-form-item>
                             <div style="display:flex; justify-content: center;" class="submit" name="login">
                                     <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
@@ -46,6 +46,9 @@
 </template>
 
 <script >
+
+import api from '@/api/index.js'
+import axios from 'axios';
 export default {
     data(){
         //验证函数
@@ -119,10 +122,28 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     if(this.activeTab === 'login'){
-                        console.log(this.loginForm);
+                        api.Login(this.loginForm).then(res => {
+                            if(res.data.code === 200){
+                                // console.log(res.data);
+                                console.log('验证成功');
+                            }
+                            else{
+                                console.log('用户名或密码错误');
+                            }
+                        }).catch(err => {
+                            console.log(err);
+                            console.log('打印错误')
+                        });                        
                     }
                     else if(this.activeTab ==='register'){
-                        console.log(this.registerForm);
+                        // console.log(typeof this.registerForm);
+                        api.register(this.registerForm).then(res => {
+                            // console.log(res.data);
+                            console.log('打印成功');
+                        }).catch(err => {
+                            console.log(err);
+                            console.log('打印错误')
+                        });
                     }
                 } else {
                     console.log('error submit!!');
@@ -132,7 +153,6 @@ export default {
         },
         handleTabClick(tab){
             this.activeTab = tab
-            // console.log(this.activeTab)
         }
         
     }

@@ -3,15 +3,15 @@ const router=express.Router();
 import sqlclient from './config.js';
 import jwt from 'jsonwebtoken';
 
+
+router.get('/getmsg', (req, res) => {
+    res.send('Welcome')
+});
 // 注册
 router.post('/register',(req,res)=>{
-    //  res.send('Welcome')
-    //  console.log('成功处理register');
-    // console.log('req.bodu',req.body);
     const{username,password,email}=req.body;
     const sql='insert into users values(?,?,?)';
     const arr=[username,password,email];
-    // const arr=['yang','123123','123@gmail.com'];
     sqlclient(sql,arr,(result)=>{
         if(result.affectedRows>0){
             res.send({
@@ -34,11 +34,10 @@ router.post('/register',(req,res)=>{
 router.post('/login',(req,res)=>{
     const{username,password}=req.body;
     const sql='select * from users where name=? and password=?';
-    // const arr=[username,password];
-    const arr=['yang','123123123']
+    const arr=[username,password];
+    console.log(req.body);
     sqlclient(sql,arr,(result)=>{
         if(result.length>0){
-
             let token=jwt.sign({
                 username,
                 password
