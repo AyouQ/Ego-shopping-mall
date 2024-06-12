@@ -1,5 +1,7 @@
+// import axios from "../utils/request.js";
 import axios from "axios";
 import base from "./base.js";
+
 
 const api={
     register(pramas){

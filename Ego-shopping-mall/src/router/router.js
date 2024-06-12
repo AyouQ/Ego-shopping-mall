@@ -9,7 +9,7 @@ const router = createRouter({
     history: createWebHashHistory(), 
     routes: [
         {
-            path: '/',
+            path: '',
             name: 'Layout',
             component: Layout,
             children: [
@@ -48,7 +48,7 @@ const router = createRouter({
             ]
         },
         {
-            path:'',
+            path:'/login',
             name:'Login',
             component:Login,
         }

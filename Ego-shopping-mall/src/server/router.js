@@ -38,14 +38,16 @@ router.post('/login',(req,res)=>{
     console.log(req.body);
     sqlclient(sql,arr,(result)=>{
         if(result.length>0){
+
             let token=jwt.sign({
                 username,
                 password
             },'somekeys')
+
             res.send({
                 code:200,
-                msg:"登录成功",
                 token,
+                username,
             })
         }else{
             res.send({

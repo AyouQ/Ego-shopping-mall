@@ -6,9 +6,12 @@ import Router from './router/router.js'
 import './router/permission.js'
 import './assets/css/common.css'
 import  './api/index'
+import store from "./store";
+import './utils/init'
 const app = createApp(App)  
 
-// Vue.prototype.request=request;
+
+app.use(store)
 app.use(ElementPlus)
 app.use(Router)
 app.mount('#app')

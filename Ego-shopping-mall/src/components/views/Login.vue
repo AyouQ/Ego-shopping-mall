@@ -48,7 +48,7 @@
 <script >
 
 import api from '@/api/index.js'
-import axios from 'axios';
+import {mapMutations} from 'vuex'
 export default {
     data(){
         //验证函数
@@ -118,17 +118,22 @@ export default {
         }
     },
     methods:{
+        ...mapMutations('login',['setUser']),
+        
         submitForm(formName){
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     if(this.activeTab === 'login'){
                         api.Login(this.loginForm).then(res => {
+                            
                             if(res.data.code === 200){
-                                // console.log(res.data);
-                                console.log('验证成功');
-                            }
-                            else{
-                                console.log('用户名或密码错误');
+                                console.log('打印成功');
+                                this.setUser(res.data);
+                                localStorage.setItem('ego',JSON.stringify(res.data));
+                                this.$router.push('/');
+                            }else{
+                                console.log('打印错误')
+                                ElMessage.error('用户名或密码错误')
                             }
                         }).catch(err => {
                             console.log(err);
@@ -136,17 +141,20 @@ export default {
                         });                        
                     }
                     else if(this.activeTab ==='register'){
-                        // console.log(typeof this.registerForm);
                         api.register(this.registerForm).then(res => {
-                            // console.log(res.data);
-                            console.log('打印成功');
+                            if(res.data.code===200){
+                                ElMessage.success('注册成功')
+                            }
+                            else{
+                                ElMessage.error('注册失败')
+                            }
                         }).catch(err => {
                             console.log(err);
                             console.log('打印错误')
                         });
                     }
                 } else {
-                    console.log('error submit!!');
+                    // console.log('error submit!!');
                     return false;
                 }
             });
