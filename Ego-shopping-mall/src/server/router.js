@@ -38,7 +38,6 @@ router.post('/login',(req,res)=>{
     console.log(req.body);
     sqlclient(sql,arr,(result)=>{
         if(result.length>0){
-
             let token=jwt.sign({
                 username,
                 password

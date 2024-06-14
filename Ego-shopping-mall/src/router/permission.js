@@ -12,6 +12,8 @@ import store from '../store';
             });
         }
       }
-      next();
+      else{
+        next();
+      }
 })
 export default router;
