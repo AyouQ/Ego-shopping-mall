@@ -2,11 +2,28 @@ import express from  'express';
 const router=express.Router();
 import sqlclient from './config.js';
 import jwt from 'jsonwebtoken';
-
+import {getList} from './config.js'
 
 router.get('/getmsg', (req, res) => {
     res.send('Welcome')
 });
+
+router.get('/gethotel',(req,res)=>{
+    const sql='select * from commodity'
+    getList(sql,'',ressult=>{
+        if(ressult.length>0){
+            res.send({
+                code:200,
+                msg:"查询成功",
+                result:ressult
+            })
+        }
+        else{
+            console.log("查询错误")
+            
+        }
+    })
+})
 router.get('/getlist',(req, res) => {
     const sql='select * from users';
     sqlclient(sql,'',(result)=>{

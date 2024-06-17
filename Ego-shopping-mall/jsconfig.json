@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    //设置根目录
+    "baseUrl": "./",
     "paths": {
       "@/*": ["./src/*"]
     },

@@ -1,14 +1,17 @@
 <template>
-    <div style="max-width: 600px">
-    <el-alert title="Success alert" type="success" />
-    <el-alert title="Info alert" type="info" />
-    <el-alert title="Warning alert" type="warning" />
-    <el-alert title="Error alert" type="error" />
-  </div>
+    <el-button @click="getMsg">获取Msg数据</el-button>
 </template>
 
 <script setup>
 
+import api from '@/api';
+const getMsg = ()=>{
+  api.Msg().then(res=>{
+    console.log(res.data)
+  }).catch(err=>{
+    console.log(err)
+  })
+}
 </script>
 
 <style lang="scss" scoped>

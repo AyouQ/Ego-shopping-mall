@@ -124,8 +124,11 @@ export default {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
                     if(this.activeTab === 'login'){
+
+                        
+
                         api.Login(this.loginForm).then(res => {
-                            
+                            console.log(res);
                             if(res.data.code === 200){
                                 console.log('登录成功');
                                 this.setUser(res.data);

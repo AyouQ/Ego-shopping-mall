@@ -1,5 +1,5 @@
-// import axios from "../utils/request.js";
 import axios from "axios";
+import request from "@/utils/request.js";
 import base from "./base.js";
 
 
@@ -12,7 +12,7 @@ const api={
     },
 
     Msg(pramas={}){
-        return axios.get('http://localhost:8000/api/getmsg',pramas);
+        return request.get('getmsg',pramas);
     }
 }
 export default api;
