@@ -1,5 +1,5 @@
 import  mysql from  'mysql';
-const client =mysql.createConnection({
+ export const client =mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '123456',
@@ -16,4 +16,5 @@ const sqlClient = (sql,arr,callback) =>{
         callback(result);
     })
 }
+
 export default sqlClient;

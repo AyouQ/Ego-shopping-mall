@@ -7,6 +7,16 @@ import jwt from 'jsonwebtoken';
 router.get('/getmsg', (req, res) => {
     res.send('Welcome')
 });
+router.get('/getlist',(req, res) => {
+    const sql='select * from users';
+    sqlclient(sql,'',(result)=>{
+        res.send({
+            code:200,
+            msg:"查询成功",
+            result,
+        })
+    })
+});
 // 注册
 router.post('/register',(req,res)=>{
     const{username,password,email}=req.body;

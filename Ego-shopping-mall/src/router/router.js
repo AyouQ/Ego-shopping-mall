@@ -1,7 +1,7 @@
 import { createRouter ,createWebHashHistory} from "vue-router";
 // import Layout from "../components/views/Layout.vue";
 import  Layout from '../views/Layout.vue'
-import Home from '../views/main/Home.vue';
+import Home from '../views/main/HomePage/Home.vue';
 import Params from "@/views/main/Params.vue";
 import Products from "@/views/main/Products.vue";
 import ADCategory from "@/views/main/ADCategory.vue";
